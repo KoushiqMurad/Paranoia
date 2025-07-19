@@ -32,7 +32,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 80%;
+            width: 90%; /* Adjusted for better mobile fit */
             max-width: 800px;
             background-color: rgba(0, 0, 0, 0.8);
             border: 2px solid #FF0000;
@@ -41,16 +41,19 @@
             text-align: center;
             opacity: 0;
             animation: fadeInPanel 2s 1s forwards;
+            box-sizing: border-box; /* Ensures padding is included in width */
         }
         .main-panel h1 {
             color: #FF0000;
-            font-size: 3vw;
+            /* Responsive font size: min 24px, preferred 5vw, max 48px */
+            font-size: clamp(24px, 5vw, 48px);
             margin: 0;
             text-shadow: 0 0 10px #FF0000;
             animation: blink 1s infinite;
         }
         .main-panel p {
-            font-size: 1.5vw;
+             /* Responsive font size: min 14px, preferred 3vw, max 22px */
+            font-size: clamp(14px, 3vw, 22px);
             margin-top: 15px;
         }
         .progress-bar {
@@ -66,9 +69,9 @@
             background-color: #FF0000;
             animation: loadProgress 15s 3s linear forwards;
         }
-        /* New style for your credit line */
         .creator-credit {
-            font-size: 1vw;
+            /* Responsive font size: min 12px, preferred 2vw, max 16px */
+            font-size: clamp(12px, 2vw, 16px);
             color: #888;
             margin-top: 20px;
         }
