@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYSTEM ALERT</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #000;
+            color: #00FF00;
+            font-family: 'Courier New', Courier, monospace;
+            cursor: none;
+        }
+        .background-text {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            font-size: 10px;
+            line-height: 1.2;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+        .main-panel {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 800px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border: 2px solid #FF0000;
+            box-shadow: 0 0 20px #FF0000;
+            padding: 20px;
+            text-align: center;
+            opacity: 0;
+            animation: fadeInPanel 2s 1s forwards;
+        }
+        .main-panel h1 {
+            color: #FF0000;
+            font-size: 3vw;
+            margin: 0;
+            text-shadow: 0 0 10px #FF0000;
+            animation: blink 1s infinite;
+        }
+        .main-panel p {
+            font-size: 1.5vw;
+            margin-top: 15px;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            border: 1px solid #00FF00;
+            margin-top: 20px;
+            padding: 2px;
+        }
+        .progress-bar-inner {
+            width: 0%;
+            height: 100%;
+            background-color: #FF0000;
+            animation: loadProgress 15s 3s linear forwards;
+        }
+        /* New style for your credit line */
+        .creator-credit {
+            font-size: 1vw;
+            color: #888;
+            margin-top: 20px;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 0.3; }
+        }
+        @keyframes fadeInPanel {
+            to { opacity: 1; }
+        }
+        @keyframes blink {
+            50% { opacity: 0.5; }
+        }
+        @keyframes loadProgress {
+            from { width: 0%; }
+            to { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div id="backgroundText" class="background-text"></div>
+    <div class="main-panel">
+        <h1>// SYSTEM COMPROMISED //</h1>
+        <p>Your files are being encrypted...</p>
+        <p id="prankMessage" style="color: #FFFF00; font-weight: bold;"></p>
+        <div class="progress-bar">
+            <div id="progressBar" class="progress-bar-inner"></div>
+        </div>
+        <!-- Your name is now in its own dedicated line -->
+        <p class="creator-credit"> by Koushiq Murad</p>
+    </div>
+
+    <script>
+        const backgroundText = document.getElementById('backgroundText');
+        const prankMessage = document.getElementById('prankMessage');
+        const progressBar = document.getElementById('progressBar');
+
+        // Generate random background text
+        function generateGibberish() {
+            let text = '';
+            const chars = '0123456789ABCDEF';
+            for (let i = 0; i < 20000; i++) {
+                text += chars[Math.floor(Math.random() * chars.length)];
+                if (i % 100 === 0) text += '\n';
+            }
+            backgroundText.textContent = text;
+        }
+
+        // Type out the prank message (without your name)
+        const message = "Nigga ML e aso!";
+        let i = 0;
+        function typeMessage() {
+            if (i < message.length) {
+                prankMessage.innerHTML += message.charAt(i);
+                i++;
+                setTimeout(typeMessage, 150);
+            }
+        }
+
+        generateGibberish();
+        
+        // Start typing the message after the progress bar starts
+        setTimeout(typeMessage, 4000);
+
+    </script>
+</body>
+</html>
